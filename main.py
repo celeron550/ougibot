@@ -658,5 +658,5 @@ async def spoiler(ctx):
 	em.add_field(name="***syntax***", value="%spoiler [file]")
 	await ctx.send(embed=em)
 
-#my_secret = os.environ['Token']
-client.run('NzkxMDA0OTEwMzc1MTQxMzg2.X-I2ug.eLOJ4ZUp0P89gqHfaqP6K6en96s')
+
+client.run(TOKEN)
