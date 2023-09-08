@@ -22,7 +22,7 @@ from enum import Enum
 
 intents = discord.Intents.all()
 client = commands.Bot(command_prefix='%', intents=intents)
-keep_alive()
+keep_alive() #thats what makes it online 24/7
 
 warns = 0
 bot_version = '2023.9.7'
