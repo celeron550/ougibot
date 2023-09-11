@@ -24,14 +24,12 @@ intents = discord.Intents.all()
 client = commands.Bot(command_prefix='%', intents=intents)
 keep_alive() #thats what makes it online 24/7
 
-warns = 0
-bot_version = '2023.9.7'
-usage = 0
+bot_version = '2023.9.11'
 danca = False
 nyaa = False
 psy = False
 queue = []
-welcome = False
+
 
 
 
@@ -40,9 +38,9 @@ welcome = False
 async def on_ready():
 	await client.change_presence(activity=discord.Activity(
 	    type=discord.ActivityType.listening, name="you"))
-	print('o pai tá on!')
+	print('Hello, World!')
 	print(client.user.name)
-	print(client.user.id)
+	
 
 @client.event
 async def on_member_join(member : discord.Member):
@@ -81,9 +79,7 @@ async def version(ctx):
 
 @client.command('ougi')
 async def ougi(ctx):
-	await ctx.send(
-	    "https://media.discordapp.net/attachments/748731688074346599/822162459971289149/FB_IMG_1616078049740.jpg"
-	)
+	await ctx.send("https://media.discordapp.net/attachments/748731688074346599/822162459971289149/FB_IMG_1616078049740.jpg")
 
 
 @client.command()
@@ -162,11 +158,11 @@ async def kick(ctx, member: discord.Member, *, reason="No reason"):
 
 
 @client.command()
-async def roll(ctx):
-	roll = random.randint(1, 6)
+async def roll(ctx, s = int()):
+	dice = random.randint(1,s+1)
 	em = discord.Embed(title='the dice shows:',
-	                   description=f'{roll}',
-	                   color=ctx.author.color)
+	                   description=f'{dice}',
+	                   color=ctx.author.color)	
 	await ctx.send(embed=em)
 
 
@@ -174,6 +170,41 @@ async def roll(ctx):
 async def manga(ctx):
 	mango = random.randint(0, 60000)
 	await ctx.send(f'https://mangadex.org/manga/{mango}')
+
+@client.command()
+@commands.has_permissions(manage_messages=True)
+async def gozei(ctx):
+	member=discord.Member
+	victim = choice(ctx.guild.members)
+	guild = ctx.guild
+	gala_role = discord.utils.get(ctx.guild.roles, name='gozado', colour=0xFFFFFF)
+	
+	while victim.bot == True:
+		victim = choice(ctx.guild.members)
+	if not gala_role:
+		await ctx.send('Creating a role...')
+		gala_role = await guild.create_role(name='gozado', colour=0xFFFFFF)
+		for channel in guild.channels:
+			await member.add_roles(gala_role)
+	await member.add_roles(gala_role)
+	if victim.bot == False:
+		await ctx.send(f"gozei no {victim.mention}")
+		await victim.add_roles(gala_role)
+	
+@client.command()
+@commands.has_permissions(manage_messages=True)
+async def limpagala(ctx):
+	role = discord.utils.get(ctx.guild.roles, name='gozado')
+	membros = list()
+	for m in role.members:
+		membros.append(m)		
+	if len(membros) == 0:
+		await ctx.send('Não tem ninguém melado.')
+	
+	else:
+		for m in role.members:
+			await m.remove_roles(role)
+		await ctx.send('Todo mundo limpinho.')
 
 
 @client.command()
@@ -508,8 +539,8 @@ async def unmute(ctx):
 
 @help.command()
 async def roll(ctx):
-	em = discord.Embed(title='Description', description="Roll a dice")
-	em.add_field(name="***syntax***", value="%roll")
+	em = discord.Embed(title='Description', description="Rolls a dice")
+	em.add_field(name="***syntax***", value="%roll <sides>")
 	await ctx.send(embed=em)
 
 
@@ -547,10 +578,9 @@ async def spank(ctx):
 
 
 @help.command()
-async def warn(ctx):
-	em = discord.Embed(title='Description', description="Warn a member")
-	em.add_field(name="***syntax***", value="%warn <member> [reason]")
-	await ctx.send(embed=em)
+async def limpagala(ctx):
+	em= discord.Embed(title='Description', description="Remove a tag 'gozado' de todos os membros.")
+	em.add_field(name="***syntax***", value="%limpagala")
 
 
 @help.command()
