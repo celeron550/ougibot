@@ -24,7 +24,7 @@ intents = discord.Intents.all()
 client = commands.Bot(command_prefix='%', intents=intents)
 keep_alive() #thats what makes it online 24/7
 
-bot_version = '2023.9.11'
+bot_version = '2023.9.15'
 danca = False
 nyaa = False
 psy = False
@@ -44,8 +44,6 @@ async def on_ready():
 
 @client.event
 async def on_member_join(member : discord.Member):
-	
-	channel = member.guild.get_channel("channel id")
 	await member.send(f"{member.name} https://i.imgur.com/9jzk2Fu.jpeg")
 
 #bot_commands
@@ -178,7 +176,6 @@ async def gozei(ctx):
 	victim = choice(ctx.guild.members)
 	guild = ctx.guild
 	gala_role = discord.utils.get(ctx.guild.roles, name='gozado')
-	
 	while victim.bot == True:
 		victim = choice(ctx.guild.members)
 	if not gala_role:
