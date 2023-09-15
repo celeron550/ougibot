@@ -177,7 +177,7 @@ async def gozei(ctx):
 	member=discord.Member
 	victim = choice(ctx.guild.members)
 	guild = ctx.guild
-	gala_role = discord.utils.get(ctx.guild.roles, name='gozado', colour=0xFFFFFF)
+	gala_role = discord.utils.get(ctx.guild.roles, name='gozado')
 	
 	while victim.bot == True:
 		victim = choice(ctx.guild.members)
