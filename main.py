@@ -499,7 +499,7 @@ async def help(ctx):
 	    name="utils",
 	    value=
 	    "say, mute, unmute, spank, warn, clean, kick, ban, unban, remindme, spoiler"
-	)  #ponha esses ae memo viu corno
+	)  
 	em.add_field(
 	    name="Fun",
 	    value=" ougi, roll, run, manga, version, roulette")
