@@ -1,2 +1,36 @@
 .env
-webserver.py
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+ENV/
+VENV/
+.venv/
+pip-log.txt
+pip-delete-this-directory.txt
+# VSCode
+.vscode/
+# Jupyter
+.ipynb_checkpoints/
+# mypy
+.mypy_cache/
+# pytest
+.pytest_cache/
+# coverage
+htmlcov/
+.coverage
+.cache
+# pyinstaller
+dist/
+build/
+*.spec
+# local env files
+*.env
+.env.*

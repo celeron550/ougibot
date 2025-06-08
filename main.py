@@ -8,8 +8,8 @@ from discord.ext.commands import has_permissions
 from discord.ext.commands import Cog
 import aiohttp
 from typing import Optional
-from webserver import keep_alive
 import os
+from dotenv import load_dotenv
 import asyncio
 import youtube_dl
 import datetime as dt
@@ -20,9 +20,11 @@ import typing as t
 from enum import Enum
 
 
+load_dotenv()
+TOKEN = os.getenv("TOKEN")
+
 intents = discord.Intents.all()
 client = commands.Bot(command_prefix='%', intents=intents)
-keep_alive() #thats what makes it online 24/7
 
 bot_version = '2023.9.15'
 danca = False
