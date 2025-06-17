@@ -210,7 +210,7 @@ async def limpagala(ctx):
 @commands.has_permissions(kick_members=True)
 async def roulette(ctx):
 	victim = choice(ctx.guild.members)
-	muted_role = ctx.guild.get_role(778450717433790494)
+	muted_role = discord.utils.get(ctx.guild.roles, name='mute' or 'muted')
 	while victim.bot == True:
 		victim = choice(ctx.guild.members)
 	if victim.bot == False:
