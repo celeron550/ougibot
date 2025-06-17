@@ -335,7 +335,7 @@ async def warn(ctx, member: discord.Member, *, reason="No reason"):
 	    f" you have been warned by {ctx.author.mention}! reason: {reason}")
 	warns += 1
 	if warns == 3:
-		muted_role = ctx.guild.get_role(778450717433790494)
+		muted_role = discord.utils.get(ctx.guild.roles, name='mute' or 'muted')
 		await member.add_roles(muted_role)
 		await ctx.send("you has received 3 warn messages, so you're muted")
 		warns = 0
