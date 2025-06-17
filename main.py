@@ -1,4 +1,3 @@
-
 import discord
 import random
 from random import choice
@@ -26,7 +25,7 @@ TOKEN = os.getenv("TOKEN")
 intents = discord.Intents.all()
 client = commands.Bot(command_prefix='%', intents=intents)
 
-bot_version = '2023.9.15'
+bot_version = '2025.6.16'
 danca = False
 nyaa = False
 psy = False
@@ -209,13 +208,15 @@ async def limpagala(ctx):
 @client.command()
 @commands.has_permissions(kick_members=True)
 async def roulette(ctx):
-	victim = choice(ctx.guild.members)
-	muted_role = discord.utils.get(ctx.guild.roles, name='mute' or 'muted')
-	while victim.bot == True:
-		victim = choice(ctx.guild.members)
-	if victim.bot == False:
-		await ctx.send(victim.mention + " the gun shoots at you")
-		await victim.add_roles(muted_role)
+    victim = choice(ctx.guild.members)
+    muted_role = discord.utils.get(ctx.guild.roles, name='mute' or 'muted')
+    while victim.bot == True:
+        victim = choice(ctx.guild.members)
+    if victim.bot == False:
+        await ctx.send(victim.mention + " the gun shoots at you")
+        await victim.add_roles(muted_role)
+        await asyncio.sleep(60)  # Aguarda 60 segundos
+        await victim.remove_roles(muted_role)
 
 
 @client.command()
