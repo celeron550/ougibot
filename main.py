@@ -17,7 +17,9 @@ import enum
 import wavelink
 import typing as t
 from enum import Enum
-
+from anilist import anime as anilist_anime
+from anilist import manga as anilist_manga
+from anilist import user_profile
 
 load_dotenv()
 TOKEN = os.getenv("TOKEN")
@@ -166,9 +168,8 @@ async def roll(ctx, s = int()):
 
 
 @client.command()  #currently not showing previews very well beacause mangadex changed their url
-async def manga(ctx):
-	mango = random.randint(0, 60000)
-	await ctx.send(f'https://mangadex.org/manga/{mango}')
+async def manga(ctx, *,name):
+	await anilist_manga(ctx,name)
 
 @client.command()
 @commands.has_permissions(manage_messages=True)
@@ -267,7 +268,7 @@ async def remindme(ctx, task, *, time):
 	converted_time = convert(time)
 
 	if converted_time == -1:
-		await ctx.send("You dindn't answer the time correctly")
+		await ctx.send("You dind't answer the time correctly")
 		return
 
 	if converted_time == -2:
@@ -374,8 +375,16 @@ async def selerom(ctx):
 	while psy == True:
 		await ctx.send("https://media.discordapp.net/attachments/754906273497088141/889274937435643904/emoji.png")
 
+@client.command()
+async def anime(ctx, *, name):
+	await anilist_anime(ctx, name)
 
-#music_commands (they're very poor commands)
+@client.command()
+async def profile(ctx, *, username):
+    await user_profile(ctx, username)
+
+
+#------------------------music_commands (they're very poor commands)-------------------
 
 
 @client.command()
@@ -487,7 +496,7 @@ async def skip(ctx):
 	await ctx.send('skipped!')
 	vc.play(queue)
 
-#help_commands
+#-----------------------------------------help_commands----------------------------
 client.remove_command("help")
 
 
