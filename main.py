@@ -328,21 +328,6 @@ async def nya(ctx):
 		)
 
 
-@client.command() #still working on it
-@commands.has_permissions(kick_members=True)
-async def warn(ctx, member: discord.Member, *, reason="No reason"):
-	warns = 0
-	await ctx.send(
-	    member.mention +
-	    f" you have been warned by {ctx.author.mention}! reason: {reason}")
-	warns += 1
-	if warns == 3:
-		muted_role = discord.utils.get(ctx.guild.roles, name='mute' or 'muted')
-		await member.add_roles(muted_role)
-		await ctx.send("you has received 3 warn messages, so you're muted")
-		warns = 0
-	else:
-		warns += 1
 
 @client.command()
 async def gabriel(ctx):
@@ -510,11 +495,11 @@ async def help(ctx):
 	em.add_field(
 	    name="utils",
 	    value=
-	    "say, mute, unmute, spank, warn, clean, kick, ban, unban, remindme, spoiler"
+	    "say, mute, unmute, spank, clean, kick, ban, unban, remindme, spoiler"
 	)  
 	em.add_field(
 	    name="Fun",
-	    value=" ougi, roll, run, manga, version, roulette")
+	    value=" ougi, roll, run, manga, version, roulette, anime, profile")
 	em.add_field(
 		name="music",
 		value = "join, play, pause, stop, resume, queue, view")
@@ -611,10 +596,21 @@ async def unban(ctx):
 
 @help.command()
 async def manga(ctx):
-	em = discord.Embed(title='Description', description="Shows a manga to you")
-	em.add_field(name="***syntax***", value="%manga")
+	em = discord.Embed(title='Description', description="Searches for a manga on anilist")
+	em.add_field(name="***syntax***", value="%manga [title]")
 	await ctx.send(embed=em)
 
+@help.command()
+async def anime(ctx):
+	em = discord.Embed(title='Description', description="Searches for an anime on anilist")
+	em.add_field(name="***syntax***", value="%anime [title]")
+	await ctx.send(embed=em)
+
+@help.command()
+async def profile(ctx):
+	em = discord.Embed(title='Description', description="Searches for an user profile on anilist")
+	em.add_field(name="***syntax***", value="%profile [user]")
+	await ctx.send(embed=em)
 
 @help.command()
 async def version(ctx):
